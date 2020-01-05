@@ -9,53 +9,57 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, ScrollView, FlatList} from 'react-native';
 
-import {Navbar} from './src/Navbar';
-import {AddTodo} from './src/AddTodo';
-import {Todo} from './src/Todo';
+import {Navbar} from './src/components/Navbar';
+import {MainScreen} from './src/screens/MainScreen';
+import {TodoScreen} from './src/screens/TodoScreen';
 
 const App: () => React$Node = () => {
-  const [todos, setTodos] = useState([]);
+    const [todoId, setTodoId] = useState(null);
+    const [todos, setTodos] = useState([]);
 
-  const addTodo = (title) => {
-    // const newTodo ={
-    //   id: Date.now().toString(),
-    //   title: title
-    // }
-    // setTodos(todos.concat([newTodo]))
-    // setTodos((prevTodos) => {
-    //   return [
-    //     ...prevTodos,
-    //     newTodo
-    //   ]
-    // } )
+    const addTodo = (title) => {
+      // const newTodo ={
+      //   id: Date.now().toString(),
+      //   title: title
+      // }
+      // setTodos(todos.concat([newTodo]))
+      // setTodos((prevTodos) => {
+      //   return [
+      //     ...prevTodos,
+      //     newTodo
+      //   ]
+      // } )
 
-    setTodos(prev => [
-      ...prev, {
-        id: Date.now().toString(),
-        title,
-      }]);
-  };
+      setTodos(prev => [
+        ...prev, {
+          id: Date.now().toString(),
+          title,
+        }]);
+    };
 
-  const removeTodo = id => {
-    setTodos (prev => prev.filter(todo => todo.id !== id))
-  }
+    const removeTodo = id => {
+      setTodos(prev => prev.filter(todo => todo.id !== id));
+    };
 
-  return (
-    <View>
-      <Navbar title="Todo App!"/>
-      <View style={styles.container}>
-        <AddTodo onSubmit={addTodo}/>
+    let content = (
+      <MainScreen todos={todos} addTodo={addTodo} removeTodo={removeTodo}/>
+    );
 
-        <FlatList
-          keyExtractor={item => item.id.toString()}
-          data={todos}
-          renderItem={({item}) => <Todo todo={item} onRemove={removeTodo}/>
-          }
-        />
+    if (todoId) {
+      content = <TodoScreen/>;
+    }
+
+
+    return (
+      <View>
+        <Navbar title="Todo App!"/>
+        <View style={styles.container}>
+          {content}
+        </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+;
 
 const styles = StyleSheet.create({
   container: {
