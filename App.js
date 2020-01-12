@@ -41,7 +41,7 @@ const App: () => React$Node = () => {
     };
 
     const removeTodo = id => {
-      const todo = todos.find(t => t.id === id)
+      const todo = todos.find(t => t.id === id);
 
       Alert.alert(
         'Удаление элемента',
@@ -51,15 +51,26 @@ const App: () => React$Node = () => {
             text: 'Отмена',
             style: 'cancel',
           },
-          {text: 'Удалить',
+          {
+            text: 'Удалить',
             onPress: () => {
-              setTodoId(null)
+              setTodoId(null);
               setTodos(prev => prev.filter(todo => todo.id !== id));
-            }},
+            },
+          },
         ],
         {cancelable: true},
       );
 
+    };
+
+    const updateTodo = (id, title) => {
+      setTodos(old => old.map(todo => {
+        if (todo.id === id) {
+          todo.title = title;
+        }
+        return todo;
+      }));
     };
 
     let content = (
@@ -71,11 +82,13 @@ const App: () => React$Node = () => {
     );
 
     if (todoId) {
-      const selectedTodo = todos.find(todo => todo.id === todoId)
+      const selectedTodo = todos.find(todo => todo.id === todoId);
       content = <TodoScreen
         onRemove={removeTodo}
         goBack={() => setTodoId(null)}
-        todo={selectedTodo} />;
+        todo={selectedTodo}
+        onSave={updateTodo}
+      />;
     }
 
 
