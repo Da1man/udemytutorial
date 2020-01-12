@@ -14,7 +14,7 @@ import {MainScreen} from './src/screens/MainScreen';
 import {TodoScreen} from './src/screens/TodoScreen';
 
 const App: () => React$Node = () => {
-    const [todoId, setTodoId] = useState(null);
+    const [todoId, setTodoId] = useState('2');
     const [todos, setTodos] = useState([
       {id: '1', title: 'Выучить React Native'},
       {id: '2', title: 'Написать приложение'},
