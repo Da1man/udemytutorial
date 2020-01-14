@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Button, Alert} from 'react-native';
+import {View, TextInput, StyleSheet, Button, Alert, TouchableOpacity} from 'react-native';
 import {THEME} from '../theme';
+import {AppText} from './ui/AppText';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const AddTodo = ({onSubmit}) => {
 
@@ -26,7 +29,13 @@ export const AddTodo = ({onSubmit}) => {
         autoCorrect={false}
         autoCapitalize={'none'}
       />
-      <Button title="Добавить" onPress={pressHendler} />
+      <TouchableOpacity style={styles.addButton} onPress={pressHendler} >
+        <Icon name="plus" size={15} color="#fff" />
+        <AppText style={{color: '#fff'}}>
+          ДОБАВИТЬ
+        </AppText>
+      </TouchableOpacity>
+      {/*<Button title="Добавить" onPress={pressHendler} />*/}
     </View>
   )
 };
@@ -39,10 +48,18 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   input: {
-    width: '70%',
+    width: '60%',
     padding: 10,
     borderBottomWidth: 2,
     borderStyle: 'solid',
     borderBottomColor: THEME.MAIN_COLOR,
-  }
+  },
+  addButton: {
+    width: '30%',
+    padding: 10,
+    backgroundColor: THEME.MAIN_COLOR,
+    borderRadius: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
