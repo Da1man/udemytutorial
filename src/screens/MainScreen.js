@@ -3,8 +3,6 @@ import {FlatList, StyleSheet, View, Image} from 'react-native';
 import {AddTodo} from '../components/AddTodo';
 import {Todo} from '../components/Todo';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 export const MainScreen = ({addTodo, todos, removeTodo, openTodo}) => {
   let content = (
     <FlatList
@@ -18,7 +16,6 @@ export const MainScreen = ({addTodo, todos, removeTodo, openTodo}) => {
   if (todos.length === 0) {
     content = <View style={styles.imgWrap}>
       <Image style={styles.image} source={require('../../assets/no_items_found_1x.jpg')} />
-      <Icon name="plus" size={30} color="#900" />
     </View>
   }
 
