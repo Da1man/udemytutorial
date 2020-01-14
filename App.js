@@ -7,7 +7,7 @@
  */
 
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, ScrollView, FlatList, Alert} from 'react-native';
+import {StyleSheet, View, ScrollView, Alert} from 'react-native';
 
 import {Navbar} from './src/components/Navbar';
 import {MainScreen} from './src/screens/MainScreen';
