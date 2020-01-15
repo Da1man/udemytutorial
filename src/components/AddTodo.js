@@ -1,23 +1,21 @@
 import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Button, Alert, TouchableOpacity} from 'react-native';
+import {View, TextInput, StyleSheet, Alert, TouchableOpacity, Keyboard} from 'react-native';
 import {THEME} from '../theme';
 import {AppText} from './ui/AppText';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const AddTodo = ({onSubmit}) => {
-
-  const [value, setValue] = useState([])
-
-  const pressHendler = () => {
+  const [value, setValue] = useState([]);
+  const pressHandler = () => {
     if (value.trim()) {
-      onSubmit(value)
-      setValue('')
+      onSubmit(value);
+      setValue('');
+      Keyboard.dismiss();
     } else {
-      Alert.alert('Название дела не может быть пустым')
+      Alert.alert('Название дела не может быть пустым');
     }
-
-  }
+  };
 
   return (
     <View style={styles.block}>
@@ -29,15 +27,13 @@ export const AddTodo = ({onSubmit}) => {
         autoCorrect={false}
         autoCapitalize={'none'}
       />
-      <TouchableOpacity style={styles.addButton} onPress={pressHendler} >
+      <TouchableOpacity style={styles.addButton} onPress={pressHandler}>
         <Icon name="plus" size={15} color="#fff" />
-        <AppText style={{color: '#fff'}}>
-          ДОБАВИТЬ
-        </AppText>
+        <AppText style={{color: '#fff'}}>ДОБАВИТЬ</AppText>
       </TouchableOpacity>
-      {/*<Button title="Добавить" onPress={pressHendler} />*/}
+      {/*<Button title="Добавить" onPress={pressHandler} />*/}
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -55,11 +51,12 @@ const styles = StyleSheet.create({
     borderBottomColor: THEME.MAIN_COLOR,
   },
   addButton: {
-    width: '30%',
+    width: '35%',
     padding: 10,
     backgroundColor: THEME.MAIN_COLOR,
     borderRadius: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
