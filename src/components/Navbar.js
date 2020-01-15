@@ -5,10 +5,7 @@ import {AppTextBold} from './ui/AppTextBold';
 
 export const Navbar = ({title}) => {
   return (
-    <View style={{...styles.navbar, ...Platform.select({
-        ios: styles.navbarIos,
-        android: styles.navbarAndroid,
-      })}}>
+    <View style={{ ...styles.navbar, ...Platform.select({ios: styles.navbarIos, android: styles.navbarAndroid})}}>
       <AppTextBold style={styles.text}>{title}</AppTextBold>
     </View>
   );

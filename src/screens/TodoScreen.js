@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Button} from 'react-native';
+import {StyleSheet, View, Button, Dimensions} from 'react-native';
 import {THEME} from '../theme';
 import {AppCard} from '../components/ui/AppCard';
 import {EditModal} from '../components/EditModal';
@@ -23,7 +23,7 @@ export const TodoScreen = ({goBack, todo, onRemove, onSave}) => {
 
       <AppCard style={styles.card}>
         <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
-        <AppButton onPress={() => setModal(true)} ><Icon name='edit' size={20} color="#fff" /></AppButton>
+        <AppButton onPress={() => setModal(true)}><Icon name='edit' size={20} color="#fff" /></AppButton>
       </AppCard>
 
       <View style={styles.buttons}>
@@ -31,7 +31,11 @@ export const TodoScreen = ({goBack, todo, onRemove, onSave}) => {
           <AppButton onPress={goBack} color={THEME.GRAY_COLOR}><Icon name='backward' size={20} color="#fff" /></AppButton>
         </View>
         <View style={styles.button}>
-          <AppButton color={THEME.DANGER_COLOR} onPress={() =>onRemove(todo.id)}><Icon name='trash' size={20} color="#fff" /></AppButton>
+          <AppButton
+            color={THEME.DANGER_COLOR}
+            onPress={() => onRemove(todo.id)}>
+            <Icon name="trash" size={20} color="#fff" />
+          </AppButton>
         </View>
       </View>
     </View>
@@ -44,7 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    width: '40%'
+    // width: Dimensions.get('window').width / 3,
+    width: Dimensions.get('window').width > 400 ? 150 : 100
   },
   title: {
     fontSize: 20,
