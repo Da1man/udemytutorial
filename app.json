@@ -1,4 +1,5 @@
 {
   "name": "udemytutorial",
-  "displayName": "udemytutorial"
+  "displayName": "udemytutorial",
+  "orientation": "default",
 }
