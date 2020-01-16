@@ -12,6 +12,7 @@ import {StyleSheet, View, ScrollView, Alert} from 'react-native';
 import {Navbar} from './src/components/Navbar';
 import {MainScreen} from './src/screens/MainScreen';
 import {TodoScreen} from './src/screens/TodoScreen';
+import {THEME} from './src/theme';
 
 const App: () => React$Node = () => {
     const [todoId, setTodoId] = useState(null);
@@ -104,7 +105,7 @@ const App: () => React$Node = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 30,
+    paddingHorizontal: THEME.PADDING_HORISONTAL,
     paddingVertical: 20,
   },
 });
